@@ -127,7 +127,7 @@ const Projects = ({ projects }: Props) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   // Separate featured and regular projects
-  const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
+  const featuredProjects = projects.filter((p) => p.featured).slice(0, 6);
   const regularProjects = projects.filter((p) => !p.featured);
 
   // Paginate regular projects
