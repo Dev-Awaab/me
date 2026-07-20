@@ -44,7 +44,7 @@ const Skills = ({ skills }: Props) => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-gray-400 text-sm md:text-base mb-12"
         >
-          Full Stack Developer exploring every tech stack
+          CRAZY FULL STACK DEVELOPER WHO WANTS TO EXPLORE EVERY TECH STACK
         </motion.p>
 
         {/* Skills Grid */}
