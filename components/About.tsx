@@ -4,58 +4,107 @@ import { PageInfo } from "../typings";
 import { urlFor } from "../sanity";
 
 type Props = {
-  pageInfo: PageInfo
+  pageInfo: PageInfo;
 };
 
 const About = ({ pageInfo }: Props) => {
   return (
-    <motion.div
+    <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
-      className="flex flex-col relative h-screen text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center"
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="relative w-full py-20 px-4 md:px-8 lg:px-12"
     >
-      <h3 className="absolute top-24 uppercase tracking-[20px]  text-gray-500 text-2xl">
-        About
-      </h3>
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-red-400 via-red-300 to-red-200 bg-clip-text text-transparent">
+            About Me
+          </h2>
+          <div className="h-1 w-20 bg-gradient-to-r from-red-400 to-transparent" />
+        </motion.div>
 
-      <motion.img
-        initial={{
-          x: -200,
-          opacity: 0,
-        }}
-        whileInView={{
-          x: 0,
-          opacity: 1,
-        }}
-        viewport={{ once: true }}
-        transition={{
-          duration: 1.2,
-        }}
-        src={urlFor(pageInfo?.profilePic).url()}
-        className="-mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-64 md:h-95 xl:w-[500px] xl:h-[600px] mt-10"
-      />
+        {/* Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* LEFT: Profile Image */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative flex justify-center"
+          >
+            {/* Glowing background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-red-500/15 to-red-600/5 rounded-3xl blur-3xl" />
 
-      <div className="md:space-y-10 px-0 md:px-10">
-        <h4 className="text-2xl md:text-4xl font-semibold mb-5 md:mb-0">
-          Here is a{" "}
-          <span className="underline decoration-red-400/50">little</span>{" "}
-          background
-        </h4>
-        <p className="md:text-base text-sm">
-          {pageInfo?.backgroundInformation}
-          {/* Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-          tempora sit a illum aperiam similique laborum quaerat eaque commodi
-          suscipit repellendus blanditiis minus veniam numquam id nemo
-          consequuntur facilis laudantium, et nulla pariatur eius illo
-          praesentium quam. Odio nostrum, minus aliquam, dolorem veniam porro
-          dicta sit harum ipsam magnam quae animi vero doloremque impedit
-          aliquid vitae error? Quos facere, quasi possimus asperiores sed dicta
-          sit harum ipsam magnam quae animi vero doloremque impedit aliquid
-          vitae error? Quos facere, quasi possimus asperiores sed */}
-        </p>
+            {/* Image container with premium border */}
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.3 }}
+              className="relative z-10"
+            >
+              <div className="relative w-72 h-80 md:w-96 md:h-full max-h-[600px] rounded-3xl overflow-hidden border-4 border-red-400/40 hover:border-red-400/70 shadow-2xl transition-all duration-300 group"
+              >
+                <img
+                  src={urlFor(pageInfo?.profilePic).url()}
+                  alt="Profile"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+              </div>
+
+              {/* Rotating border accent */}
+              <motion.div
+                className="absolute -top-6 -right-6 w-24 h-24 border-2 border-red-400/20 rounded-3xl"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.div
+                className="absolute -bottom-6 -left-6 w-20 h-20 border-2 border-red-400/30 rounded-full"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              />
+            </motion.div>
+          </motion.div>
+
+          {/* RIGHT: Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-8"
+          >
+            {/* Heading */}
+            <div>
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight">
+                Full Stack Developer &{" "}
+                <span className="bg-gradient-to-r from-red-400 via-red-300 to-red-200 bg-clip-text text-transparent">
+                  Tech Enthusiast
+                </span>
+              </h3>
+            </div>
+
+            {/* Description */}
+            <div>
+              <p className="text-gray-400 leading-relaxed text-sm md:text-base">
+                {pageInfo?.backgroundInformation}
+              </p>
+            </div>
+          </motion.div>
+        </div>
       </div>
-    </motion.div>
+
+      {/* Decorative Background */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/5 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-red-400/5 rounded-full blur-3xl -z-10" />
+    </motion.section>
   );
 };
 

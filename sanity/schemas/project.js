@@ -34,5 +34,12 @@ export default {
       title: "LinkToBuild",
       type: "url",
     },
+    {
+      name: "featured",
+      title: "Featured Project",
+      description: "Mark this project as featured (shows in the featured section at the top)",
+      type: "boolean",
+      initialValue: false,
+    },
   ],
 };
